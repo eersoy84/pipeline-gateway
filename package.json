@@ -1,10 +1,9 @@
 {
-  "name": "pipeline-gateway",
+  "name": "@worldwidewebb/pipeline-gateway",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "pipeline-gateway",
+  "author": "eyup@webb.technology",
+  "license": "webb.technology",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -22,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "^1.0.1",
     "@nestjs/microservices": "^8.4.5",
