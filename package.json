@@ -5,6 +5,7 @@
   "author": "eyup@webb.technology",
   "license": "webb.technology",
   "scripts": {
+    "generate-client": "ts-node ./src/generate-client.ts",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -30,6 +31,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "kafkajs": "^2.0.0",
+    "nest-openapi-tools": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
