@@ -7,16 +7,15 @@ async function bootstrap() {
   const logger = new Logger(bootstrap.name);
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 5000;
-  app.setGlobalPrefix('api');
 
-  // const swaggerConfig = new DocumentBuilder()
-  //   .setTitle('Pipeline-Gateway')
-  //   .setDescription('Entry Point For HTTP/Kafka Pipeline Gateway')
-  //   .setVersion('1.0')
-  //   .addTag('pipeline-gateway')
-  //   .build();
-  // const document = SwaggerModule.createDocument(app, swaggerConfig);
-  // SwaggerModule.setup('api', app, document);
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Pipeline-Gateway')
+    .setDescription('Entry Point For HTTP/Kafka Pipeline Gateway')
+    .setVersion('1.0')
+    .addTag('pipeline-gateway')
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('/', app, document);
 
   await app.listen(5000, () => {
     logger.verbose(`Pipeline Gateway is listening on port ${port}...`);

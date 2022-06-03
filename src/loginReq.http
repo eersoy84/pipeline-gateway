@@ -1,4 +1,4 @@
-@API_BASE=http://localhost:5000/api
+@API_BASE=http://localhost:5000
 
 
 post {{API_BASE}}/fetch-nft-for-wallet

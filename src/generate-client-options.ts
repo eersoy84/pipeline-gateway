@@ -19,7 +19,7 @@ export const generateClient = async (app: INestApplication) => {
       },
       fileGeneratorOptions: {
         enabled: true,
-        outputFilePath: './openapi.json', // or ./openapi.json
+        outputFilePath: './openapi.json', // or ./openapi.yaml
       },
       clientGeneratorOptions: {
         enabled: false,
@@ -27,7 +27,7 @@ export const generateClient = async (app: INestApplication) => {
         outputFolderPath: '../typescript-api-client/src',
         additionalProperties:
           'apiPackage=clients,modelPackage=models,withoutPrefixEnums=true,withSeparateModelsAndApi=true',
-        openApiFilePath: './openapi.json', // or ./openapi.json
+        openApiFilePath: './openapi.json', // or ./openapi.yaml
         skipValidation: true, // optional, false by default
       },
     },

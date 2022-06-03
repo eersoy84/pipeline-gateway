@@ -1,3 +1,3 @@
 ## Description
 
-Pipeline Gateway for Avatars Pipeline
+Pipeline Gateway for Avatars
