@@ -14,7 +14,7 @@ import { AppService } from './app.service';
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: 'pipeline-gateway',
+            clientId: 'fetchNftForWallet',
             brokers: [process.env.KAFKA_BROKER_URL],
           },
           consumer: {
@@ -27,7 +27,7 @@ import { AppService } from './app.service';
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: 'pipeline-gateway',
+            clientId: 'fetchApartmentForWallet',
             brokers: [process.env.KAFKA_BROKER_URL],
           },
           consumer: {
