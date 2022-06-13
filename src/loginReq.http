@@ -1,13 +1,14 @@
 @API_BASE=http://localhost:5000
 
 
-post {{API_BASE}}/fetch-nft-for-wallet
+post {{API_BASE}}/fetch-wallet
 Content-Type: application/json
 
 {
     "userId":"01G1YVWX5GMJ19XF73Q8AYKDET",
     "chain":"eth",
-    "address":"0x6c1Fb499c31aedCE4c535D250993fe25859f5823" 
+    "address":"0x6c1Fb499c31aedCE4c535D250993fe25859f5823"
+    ,"priority":1 
     //"address":"0x6eE4095bE63dB5F55448962B90392C584f9a2488" 
 }
 

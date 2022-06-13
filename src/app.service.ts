@@ -1,17 +1,13 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientKafka } from '@nestjs/microservices';
-import { FETCH_APARTMENT_FOR_WALLET_SERVICE, FETCH_NFT_WALLET_SERVICE } from './app.constants';
-import { NftForWalletRequestDto } from './dto';
+import { Injectable } from '@nestjs/common';
+import { LOW_PRIORITY, PRIORITY_LEVEL, WALLET_REQUEST_TOPIC } from './app.constants';
+import { WalletRequestDto } from './dto';
+import { KafkaService } from './kafka/kafka.service';
 
 @Injectable()
 export class AppService {
-  constructor(
-    @Inject(FETCH_NFT_WALLET_SERVICE) private readonly fetchNftWalletClient: ClientKafka,
-    @Inject(FETCH_APARTMENT_FOR_WALLET_SERVICE) private readonly fetchApartmentForWalletClient: ClientKafka,
-  ) {}
+  constructor(private kafka: KafkaService) {}
 
-  fetchNftForWalletRequest(dto: NftForWalletRequestDto) {
-    this.fetchNftWalletClient.emit('nft.for.wallet.request', dto);
-    this.fetchApartmentForWalletClient.emit('fetch.apartment.for.wallet.request', dto);
+  async fetchWallet(dto: WalletRequestDto) {
+    await this.kafka.send(WALLET_REQUEST_TOPIC, dto);
   }
 }
