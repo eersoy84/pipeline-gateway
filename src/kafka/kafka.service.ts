@@ -79,7 +79,6 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
   async send(topic: string, dto: any, priority?: string) {
     const { userId } = dto;
     const partition = this.murmur.getPartition(userId, priority);
-    console.log('partition=>', partition);
     await this.producer.send({
       topic,
       acks: -1,
