@@ -1,20 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { MURMUR_SERVICE, WALLET_SERVICE, ADMIN_SERVICE } from 'src/app.constants';
+import { MURMUR_SERVICE, WALLET_SERVICE } from 'src/app.constants';
 import { KafkaService } from './kafka.service';
-import { Kafka } from 'kafkajs';
 import { Murmur2 } from './murmur2';
-
-const adminService = {
-  provide: ADMIN_SERVICE,
-  useFactory: () => {
-    return new Kafka({
-      clientId: 'adminService',
-      brokers: [process.env.KAFKA_BROKER_URL],
-    });
-  },
-};
 
 const murmurService = {
   provide: MURMUR_SERVICE,
@@ -40,11 +29,14 @@ const murmurService = {
           producer: {
             idempotent: true,
           },
+          consumer: {
+            groupId: 'fetchNftForWallet-consumer-group',
+          },
         },
       },
     ]),
   ],
-  providers: [murmurService, adminService, KafkaService],
+  providers: [murmurService, KafkaService],
   exports: [KafkaService],
 })
 export class KafkaModule {}

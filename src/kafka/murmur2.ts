@@ -1,5 +1,4 @@
-import { Logger } from '@nestjs/common';
-import { LOW_PRIORITY, NUM_PARTITIONS, PRIORITY_LEVEL } from 'src/app.constants';
+import { NUM_PARTITIONS, PRIORITY_LEVEL } from 'src/app.constants';
 
 const SEED = 0x9747b28c;
 
@@ -8,7 +7,7 @@ const SEED = 0x9747b28c;
 const M = 0x5bd1e995;
 const R = 24;
 export class Murmur2 {
-  getPartition(key: string, priority?: PRIORITY_LEVEL): number {
+  getPartition(key: string, priority?: string): number {
     const hash = this.toPositive(this.murmur2(key));
     const result = hash % (NUM_PARTITIONS / 2);
     if (priority == PRIORITY_LEVEL.LOW_PRIORITY) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { WalletRequestDto } from './dto';
@@ -11,8 +11,7 @@ export class AppController {
   @ApiCreatedResponse({ status: 201, description: 'Request successfully queued in Kafka' })
   @ApiResponse({ status: 403, description: 'Forbidden' })
   @Post('fetch-wallet')
-  fetchWallet(@Body() dto: WalletRequestDto) {
-    console.log('dto==>', dto);
-    this.appService.fetchWallet(dto);
+  fetchWallet(@Body() dto: WalletRequestDto, @Query('priority') priority: string) {
+    this.appService.fetchWallet(dto, priority);
   }
 }
